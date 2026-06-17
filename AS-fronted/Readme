@@ -1,0 +1,23 @@
+Meu sistema é um medform onde a dor que ele resolve é a coleta manual e com falta de eficiencia de dados, tambem
+reduz erros no preenchimento e melhora a organização das informaçoes deixando o processo mais rapido
+dentro das suas funcionalidades ele tem como função cadastrar o usuário por meio de formulário em etapas, exibe o campo conforme as respostas
+do usuario, coleta os dados pessoais e após isso vai para um formulário médico onde sera cadastrado sintomas, se a uso de medicamentos, se tem
+alguma alergia etc
+
+dentro da parte de Front foi criado os componentes 
+sintomas que vai informar oq esta sentindo e defini o nivel da dor e se tem febre
+
+medicamento ele vai perguntar se o paciente usa medicamento se nao usa pula esta parte, se usa permite listar vários medicamentos
+
+resresumo mostra todos os dados preenchidos e o usuario confirma antes de enviar
+
+container que controla as etapas, armazena os dados e decide quando avançar
+
+triagem-resultado exibe o nivel de risco e mostra recomendação médica
+
+Na parte de backend tem
+Controller onde o front envia as informações do paciente e o back recebe por sua requisição
+
+service organiza os dados recebidos e prepara para a analise
+
+classificacaoService analisa os sintoma tipo dor alta = risco alto, febre = risco médio e leve = risco baixo
