@@ -1,1 +1,46 @@
-<p>medicamento works!</p>
+<div class="card">
+  <h2>Medicamentos</h2>
+
+  <div class="campo">
+    <label>O paciente usa algum medicamento?</label>
+    <div class="acoes">
+      <button type="button" (click)="alterarUso(true)">Sim</button>
+      <button type="button" class="claro" (click)="alterarUso(false)">Não</button>
+    </div>
+  </div>
+
+  <form *ngIf="usaMedicamento" [formGroup]="form">
+    <div formArrayName="medicamentos">
+      <div
+        class="responsavel"
+        *ngFor="let item of medicamentos.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="form-grid">
+          <div class="campo">
+            <label>Nome do medicamento</label>
+            <input formControlName="nome" placeholder="Ex: Dipirona" />
+          </div>
+
+          <div class="campo">
+            <label>Dosagem</label>
+            <input formControlName="dosagem" placeholder="Ex: 500mg" />
+          </div>
+        </div>
+
+        <button type="button" class="secundario" (click)="removerMedicamento(i)">
+          Remover
+        </button>
+      </div>
+    </div>
+
+    <button type="button" class="claro" (click)="adicionarMedicamento()">
+      Adicionar medicamento
+    </button>
+  </form>
+
+  <div class="acoes">
+    <button type="button" class="secundario" (click)="voltarEtapa.emit()">Voltar</button>
+    <button type="button" (click)="enviar()">Próximo</button>
+  </div>
+</div>

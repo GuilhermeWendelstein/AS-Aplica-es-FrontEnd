@@ -1,1 +1,16 @@
-<p>triagem-resultado works!</p>
+<div class="card" *ngIf="resultado">
+  <h2>Resultado da triagem</h2>
+
+  <div class="resumo-lista">
+    <div class="resumo-item">
+      <strong>Nível de risco:</strong>
+      <span [ngClass]="resultado.nivel.toLowerCase()">
+        {{ resultado.nivel }}
+      </span>
+    </div>
+
+    <div class="resumo-item">
+      <strong>Recomendação:</strong> {{ resultado.recomendacao }}
+    </div>
+  </div>
+</div>

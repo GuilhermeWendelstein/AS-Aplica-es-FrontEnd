@@ -1,1 +1,28 @@
-<p>sintomas works!</p>
+<form [formGroup]="form" class="card">
+  <h2>Sintomas</h2>
+
+  <div class="form-grid">
+    <div class="campo campo-full">
+      <label>O que você está sentindo?</label>
+      <textarea formControlName="descricao" placeholder="Descreva os sintomas"></textarea>
+    </div>
+
+    <div class="campo">
+      <label>Nível da dor: {{ form.value.nivelDor }}</label>
+      <input type="range" min="1" max="10" formControlName="nivelDor" />
+    </div>
+
+    <div class="campo">
+      <label>Febre</label>
+      <select formControlName="temFebre">
+        <option [ngValue]="false">Não</option>
+        <option [ngValue]="true">Sim</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="acoes">
+    <button type="button" class="secundario" (click)="voltarEtapa.emit()">Voltar</button>
+    <button type="button" (click)="enviar()">Próximo</button>
+  </div>
+</form>

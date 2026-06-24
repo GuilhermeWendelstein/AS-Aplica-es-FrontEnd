@@ -7,6 +7,9 @@ const cors = require('cors');
 // Importamos as rotas que acabamos de criar no arquivo routes.js
 const routes = require('./routes'); 
 
+// Importamos as rotas da triagem médica
+const triagemRoutes = require('./routes/triagemRoutes');
+
 // Inicializa o Express
 const app = express();
 
@@ -20,6 +23,9 @@ app.use(cors());
 // Isso conecta tudo o que fizemos no routes.js ao nosso servidor principal
 app.use(routes);
 
+// Conecta as rotas da triagem médica
+app.use('/api/triagem', triagemRoutes);
+
 // Define a porta e inicia o servidor
 const PORT = 3000;
 app.listen(PORT, () => {
@@ -29,4 +35,5 @@ app.listen(PORT, () => {
   console.log(`- GET  /usuarios/:id`);
   console.log(`- POST /cadastro`);
   console.log(`- POST /login`);
+  console.log(`- POST /api/triagem`);
 });

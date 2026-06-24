@@ -1,1 +1,159 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #d9f99d 0, transparent 28%),
+    radial-gradient(circle at top right, #bfdbfe 0, transparent 30%),
+    #f6f8fb;
+  color: #172026;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  border: 1px solid #dce6ed;
+  border-radius: 18px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+}
+
+.card h2 {
+  margin: 0 0 18px;
+  color: #0f172a;
+  font-size: 26px;
+}
+
+.card h3 {
+  margin-top: 24px;
+  color: #0f766e;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.campo-full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-weight: bold;
+  color: #334155;
+  font-size: 14px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #0f766e;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.13);
+}
+
+textarea {
+  min-height: 105px;
+  resize: vertical;
+}
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: #0f766e;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+}
+
+button:hover {
+  background: #115e59;
+}
+
+button.secundario {
+  background: #64748b;
+  box-shadow: none;
+}
+
+button.secundario:hover {
+  background: #475569;
+}
+
+button.claro {
+  background: #e2e8f0;
+  color: #0f172a;
+  box-shadow: none;
+}
+
+.responsavel {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  padding: 18px;
+  border-radius: 16px;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+}
+
+.resumo-lista {
+  display: grid;
+  gap: 10px;
+}
+
+.resumo-item {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.alto {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.médio,
+.medio {
+  color: #b45309;
+  font-weight: bold;
+}
+
+.baixo {
+  color: #15803d;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

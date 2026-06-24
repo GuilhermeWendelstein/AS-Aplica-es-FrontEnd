@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-resumo',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './resumo.html',
-  styleUrl: './resumo.css',
 })
 export class Resumo {
+  @Input() paciente: any;
+  @Input() sintomas: any;
+  @Input() medicamentos: any[] = [];
 
+  @Output() confirmar = new EventEmitter<void>();
+  @Output() voltarEtapa = new EventEmitter<void>();
 }

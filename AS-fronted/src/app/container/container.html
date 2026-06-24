@@ -1,1 +1,141 @@
-<p>container works!</p>
+<section class="medform">
+  <div class="topo">
+    <span class="tag">Triagem digital</span>
+    <h1>MedForm</h1>
+    <p>Coleta médica rápida, organizada e com menos erros.</p>
+  </div>
+
+  <div class="etapas">
+    <span [class.ativa]="etapa === 1">Dados</span>
+    <span [class.ativa]="etapa === 2">Sintomas</span>
+    <span [class.ativa]="etapa === 3">Medicamentos</span>
+    <span [class.ativa]="etapa === 4">Resumo</span>
+    <span [class.ativa]="etapa === 5">Resultado</span>
+  </div>
+
+  <form *ngIf="etapa === 1" [formGroup]="pacienteForm" class="card">
+    <h2>Dados do paciente</h2>
+
+    <div class="form-grid">
+      <div class="campo campo-full">
+        <label>Nome completo</label>
+        <input formControlName="nome" placeholder="Digite o nome do paciente" />
+      </div>
+
+      <div class="campo">
+        <label>Maior ou menor de idade?</label>
+        <select formControlName="faixaEtaria">
+          <option value="">Selecione</option>
+          <option value="maior">Maior de idade</option>
+          <option value="menor">Menor de idade</option>
+        </select>
+      </div>
+
+      <div class="campo" *ngIf="pacienteForm.value.faixaEtaria">
+        <label>Idade</label>
+        <input
+          type="text"
+          inputmode="numeric"
+          formControlName="idade"
+          placeholder="Digite a idade"
+          (input)="somenteNumeros('idade', 3)"
+        />
+      </div>
+
+      <div *ngIf="ehMenorDeIdade()" class="responsavel">
+        <h3>Informações do responsável</h3>
+
+        <div class="form-grid">
+          <div class="campo campo-full">
+            <label>Nome do responsável</label>
+            <input formControlName="responsavelNome" placeholder="Nome completo" />
+          </div>
+
+          <div class="campo">
+            <label>CPF do responsável</label>
+            <input
+              type="text"
+              inputmode="numeric"
+              formControlName="responsavelCpf"
+              placeholder="Somente números"
+              (input)="somenteNumeros('responsavelCpf', 11)"
+            />
+          </div>
+
+          <div class="campo">
+            <label>Telefone do responsável</label>
+            <input
+              type="text"
+              inputmode="numeric"
+              formControlName="responsavelTelefone"
+              placeholder="Somente números"
+              (input)="somenteNumeros('responsavelTelefone', 11)"
+            />
+          </div>
+
+          <div class="campo campo-full">
+            <label>Parentesco</label>
+            <input formControlName="responsavelParentesco" placeholder="Ex: mãe, pai, avó" />
+          </div>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label>CPF do paciente</label>
+        <input
+          type="text"
+          inputmode="numeric"
+          formControlName="cpf"
+          placeholder="Somente números"
+          (input)="somenteNumeros('cpf', 11)"
+        />
+      </div>
+
+      <div class="campo">
+        <label>Telefone do paciente</label>
+        <input
+          type="text"
+          inputmode="numeric"
+          formControlName="telefone"
+          placeholder="Somente números"
+          (input)="somenteNumeros('telefone', 11)"
+        />
+      </div>
+
+      <div class="campo campo-full">
+        <label>Alergias</label>
+        <textarea formControlName="alergias" placeholder="Informe alergias, se houver"></textarea>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <button type="button" (click)="avancarPaciente()">Próximo</button>
+    </div>
+  </form>
+
+  <app-sintomas
+    *ngIf="etapa === 2"
+    (continuar)="salvarSintomas($event)"
+    (voltarEtapa)="voltar()"
+  ></app-sintomas>
+
+  <app-medicamento
+    *ngIf="etapa === 3"
+    (continuar)="salvarMedicamentos($event)"
+    (voltarEtapa)="voltar()"
+  ></app-medicamento>
+
+  <app-resumo
+    *ngIf="etapa === 4"
+    [paciente]="pacienteForm.value"
+    [sintomas]="sintomas"
+    [medicamentos]="medicamentos"
+    (confirmar)="enviar()"
+    (voltarEtapa)="voltar()"
+  ></app-resumo>
+
+  <app-triagem-resultado
+    *ngIf="etapa === 5"
+    [resultado]="resultado"
+  ></app-triagem-resultado>
+</section>

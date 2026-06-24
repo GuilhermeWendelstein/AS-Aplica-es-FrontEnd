@@ -1,1 +1,43 @@
-<p>resumo works!</p>
+<div class="card">
+  <h2>Resumo dos dados</h2>
+
+  <h3>Paciente</h3>
+  <div class="resumo-lista">
+    <div class="resumo-item"><strong>Nome:</strong> {{ paciente.nome }}</div>
+    <div class="resumo-item"><strong>Idade:</strong> {{ paciente.idade }}</div>
+    <div class="resumo-item"><strong>CPF:</strong> {{ paciente.cpf }}</div>
+    <div class="resumo-item"><strong>Telefone:</strong> {{ paciente.telefone }}</div>
+    <div class="resumo-item"><strong>Alergias:</strong> {{ paciente.alergias || 'Não informado' }}</div>
+  </div>
+
+  <div *ngIf="paciente.faixaEtaria === 'menor'">
+    <h3>Responsável</h3>
+    <div class="resumo-lista">
+      <div class="resumo-item"><strong>Nome:</strong> {{ paciente.responsavelNome }}</div>
+      <div class="resumo-item"><strong>CPF:</strong> {{ paciente.responsavelCpf }}</div>
+      <div class="resumo-item"><strong>Telefone:</strong> {{ paciente.responsavelTelefone }}</div>
+      <div class="resumo-item"><strong>Parentesco:</strong> {{ paciente.responsavelParentesco }}</div>
+    </div>
+  </div>
+
+  <h3>Sintomas</h3>
+  <div class="resumo-lista">
+    <div class="resumo-item"><strong>Descrição:</strong> {{ sintomas.descricao }}</div>
+    <div class="resumo-item"><strong>Nível da dor:</strong> {{ sintomas.nivelDor }}</div>
+    <div class="resumo-item"><strong>Febre:</strong> {{ sintomas.temFebre ? 'Sim' : 'Não' }}</div>
+  </div>
+
+  <h3>Medicamentos</h3>
+  <p *ngIf="medicamentos.length === 0">Paciente não usa medicamentos.</p>
+
+  <ul *ngIf="medicamentos.length > 0">
+    <li *ngFor="let med of medicamentos">
+      {{ med.nome }} - {{ med.dosagem }}
+    </li>
+  </ul>
+
+  <div class="acoes">
+    <button type="button" class="secundario" (click)="voltarEtapa.emit()">Voltar</button>
+    <button type="button" (click)="confirmar.emit()">Confirmar e enviar</button>
+  </div>
+</div>
