@@ -21,3 +21,10 @@ Controller onde o front envia as informações do paciente e o back recebe por s
 service organiza os dados recebidos e prepara para a analise
 
 classificacaoService analisa os sintoma tipo dor alta = risco alto, febre = risco médio e leve = risco baixo
+
+-----
+versao atualizada, implementado mais funçoes e limitaçoes ao que pode ser coloco. colocado caso usuario queira voltar para trocar alguma informaçao
+voltar a pagina de login e se nao tiver login cadastrar e criado um banco para armazenar este login de usuario, tambem implementado rotas novas e alguma modificaçoes dentro de
+partes especificas nescessarias.
+nao consegui implementar uma parte admnistrativa pois a ideia nao batia e os codigos dos quais eu fazia, mesmo com suporte nao consegui fazer a ideia se concretizar, fora que ela acabava meio que bugada ou certas partes nao funcionando mesmo tendo arrumado ou estando certo dentro do codigo
+gostaria de ter colocado entretando nao deu realmente, acaba por mexer mt em certas partes que ja teria que mudar quase todo o trabalho só por causa de querer fazer uma parte de adm
