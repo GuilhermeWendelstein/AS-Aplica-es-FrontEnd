@@ -19,7 +19,11 @@
     <div class="form-grid">
       <div class="campo campo-full">
         <label>Nome completo</label>
-        <input formControlName="nome" placeholder="Digite o nome do paciente" />
+        <input
+          formControlName="nome"
+          placeholder="Digite o nome do paciente"
+          (input)="somenteLetras('nome')"
+        />
       </div>
 
       <div class="campo">
@@ -48,7 +52,11 @@
         <div class="form-grid">
           <div class="campo campo-full">
             <label>Nome do responsável</label>
-            <input formControlName="responsavelNome" placeholder="Nome completo" />
+            <input
+              formControlName="responsavelNome"
+              placeholder="Nome completo"
+              (input)="somenteLetras('responsavelNome')"
+            />
           </div>
 
           <div class="campo">
@@ -75,7 +83,11 @@
 
           <div class="campo campo-full">
             <label>Parentesco</label>
-            <input formControlName="responsavelParentesco" placeholder="Ex: mãe, pai, avó" />
+            <input
+              formControlName="responsavelParentesco"
+              placeholder="Ex: mãe, pai, avó"
+              (input)="somenteLetras('responsavelParentesco')"
+            />
           </div>
         </div>
       </div>
@@ -104,7 +116,11 @@
 
       <div class="campo campo-full">
         <label>Alergias</label>
-        <textarea formControlName="alergias" placeholder="Informe alergias, se houver"></textarea>
+        <textarea
+          formControlName="alergias"
+          placeholder="Informe alergias, se houver"
+          (input)="somenteLetras('alergias')"
+        ></textarea>
       </div>
     </div>
 
@@ -137,5 +153,6 @@
   <app-triagem-resultado
     *ngIf="etapa === 5"
     [resultado]="resultado"
+    (reiniciar)="reiniciarTriagem()"
   ></app-triagem-resultado>
 </section>

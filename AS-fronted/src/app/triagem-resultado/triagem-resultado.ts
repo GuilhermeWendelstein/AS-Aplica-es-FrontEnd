@@ -13,7 +13,10 @@ export class TriagemResultado {
 
   constructor(private router: Router) {}
 
-  voltarMenu() {
-    this.router.navigate(['/dashboard']);
+  novaConsulta() {
+    window.location.reload();
+  }
+  voltarLogin() {
+    this.router.navigate(['/login']);
   }
 }

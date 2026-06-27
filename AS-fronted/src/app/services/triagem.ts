@@ -13,8 +13,4 @@ export class Triagem {
   cadastrarTriagem(dados: any): Observable<any> {
     return this.http.post(this.apiUrl, dados);
   }
-
-  listarTriagens(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
 }

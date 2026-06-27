@@ -34,6 +34,7 @@ export class Container {
     private fb: FormBuilder,
     private http: HttpClient
   ) {
+    // Define os campos do formulário com suas respectivas validações
     this.pacienteForm = this.fb.group({
       nome: ['', Validators.required],
       faixaEtaria: ['', Validators.required],
@@ -47,9 +48,14 @@ export class Container {
       responsavelTelefone: [''],
       responsavelParentesco: [''],
     });
-
+    //faz com que quando for menor se torna obrigatório colocar de menor e as informaçoes do responsavel
     this.pacienteForm.get('faixaEtaria')?.valueChanges.subscribe((valor) => {
-      const campos = ['responsavelNome', 'responsavelCpf', 'responsavelTelefone', 'responsavelParentesco'];
+      const campos = [
+        'responsavelNome',
+        'responsavelCpf',
+        'responsavelTelefone',
+        'responsavelParentesco',
+      ];
 
       campos.forEach((campo) => {
         const controle = this.pacienteForm.get(campo);
@@ -66,9 +72,23 @@ export class Container {
     });
   }
 
+  reiniciarTriagem() {
+    this.etapa = 1;
+    this.pacienteForm.reset();
+    this.sintomas = {};
+    this.medicamentos = [];
+    this.resultado = null;
+  }
+
   somenteNumeros(campo: string, limite: number) {
     const controle = this.pacienteForm.get(campo);
     const valor = String(controle?.value || '').replace(/\D/g, '').slice(0, limite);
+    controle?.setValue(valor, { emitEvent: false });
+  }
+
+  somenteLetras(campo: string) {
+    const controle = this.pacienteForm.get(campo);
+    const valor = String(controle?.value || '').replace(/[^A-Za-zÀ-ÿ\s]/g, '');
     controle?.setValue(valor, { emitEvent: false });
   }
 
@@ -76,9 +96,30 @@ export class Container {
     return this.pacienteForm.value.faixaEtaria === 'menor';
   }
 
+  validarIdadeComFaixa(): boolean {
+    const faixaEtaria = this.pacienteForm.value.faixaEtaria;
+    const idade = Number(this.pacienteForm.value.idade);
+
+    if (faixaEtaria === 'maior' && idade < 18) {
+      alert('Paciente menor de 18 anos deve ser marcado como menor de idade.');
+      return false;
+    }
+
+    if (faixaEtaria === 'menor' && idade >= 18) {
+      alert('Paciente com 18 anos ou mais deve ser marcado como maior de idade.');
+      return false;
+    }
+
+    return true;
+  }
+  // Avança para a próxima etapa validando o formulário atual
   avancarPaciente() {
     if (this.pacienteForm.invalid) {
       this.pacienteForm.markAllAsTouched();
+      return;
+    }
+
+    if (!this.validarIdadeComFaixa()) {
       return;
     }
 

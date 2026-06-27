@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
+  imports: [ReactiveFormsModule, CommonModule, RouterLink], 
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -32,7 +32,7 @@ export class Login {
           // Salva o token recebido no LocalStorage
           this.authService.salvarToken(resposta.token);
           alert('Login realizado!');
-          this.router.navigate(['/dashboard']); // Libera o acesso à área privada
+          this.router.navigate(['/medform']); 
         },
         error: (erro) => {
           alert('Credenciais inválidas!');

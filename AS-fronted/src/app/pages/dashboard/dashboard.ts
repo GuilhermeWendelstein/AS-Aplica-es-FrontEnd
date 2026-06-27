@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit {
- listaDeUsuarios: any[] = [];
+  listaDeUsuarios: any[] = [];
   mensagemErro: string = '';
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cdr: ChangeDetectorRef // 1. Injetamos o detector de mudanças aqui
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -25,28 +25,23 @@ export class Dashboard implements OnInit {
   carregarUsuarios(): void {
     this.authService.listarUsuarios().subscribe({
       next: (dadosDaApi) => {
-        // 2. Verificamos se é um array de dados válido
         if (Array.isArray(dadosDaApi)) {
-          // 3. Colocamos os dados na variável
           this.listaDeUsuarios = dadosDaApi;
-          
-          // 4. A CORREÇÃO MÁGICA: Avisamos o HTML para atualizar a tela neste exato segundo!
           this.cdr.detectChanges();
         } else {
           this.listaDeUsuarios = [];
         }
       },
       error: (erro) => {
-        this.mensagemErro = 'Falha ao buscar dados: ' + (erro.error?.erro || erro.message);
-        
-        // Avisamos o HTML caso a mensagem de erro precise aparecer
+        this.mensagemErro =
+          'Falha ao buscar dados: ' + (erro.error?.erro || erro.message);
+
         this.cdr.detectChanges();
-      }
+      },
     });
   }
-
   fazerLogout(): void {
-    this.authService.sair(); 
-    this.router.navigate(['/login']); 
+    this.authService.sair();
+    this.router.navigate(['/medform']);
   }
-}
+} 

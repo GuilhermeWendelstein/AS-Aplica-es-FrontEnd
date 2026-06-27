@@ -14,7 +14,7 @@ export class Medicamento {
 
   usaMedicamento = false;
   form: FormGroup;
-
+  // Inicializa com um FormArray
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       medicamentos: this.fb.array([]),
@@ -24,7 +24,7 @@ export class Medicamento {
   get medicamentos() {
     return this.form.get('medicamentos') as FormArray;
   }
-
+  // Adiciona um grupo de campos (nome/dosagem)
   adicionarMedicamento() {
     this.medicamentos.push(
       this.fb.group({
@@ -49,7 +49,7 @@ export class Medicamento {
       this.medicamentos.clear();
     }
   }
-
+  // Envia os dados para o pai (Container)
   enviar() {
     if (this.usaMedicamento && this.form.invalid) {
       this.form.markAllAsTouched();

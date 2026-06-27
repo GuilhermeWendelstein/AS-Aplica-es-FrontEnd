@@ -4,25 +4,44 @@
   <div class="form-grid">
     <div class="campo campo-full">
       <label>O que você está sentindo?</label>
-      <textarea formControlName="descricao" placeholder="Descreva os sintomas"></textarea>
+      <textarea
+        formControlName="descricao"
+        placeholder="Ex: dor de cabeça, tontura e enjoo"
+        (input)="somenteLetrasSintomas()"
+      ></textarea>
     </div>
 
     <div class="campo">
-      <label>Nível da dor: {{ form.value.nivelDor }}</label>
-      <input type="range" min="1" max="10" formControlName="nivelDor" />
+      <label>Nível do sintoma: {{ form.value.nivelSintoma }}</label>
+      <input
+        type="range"
+        min="1"
+        max="10"
+        formControlName="nivelSintoma"
+      />
     </div>
 
     <div class="campo">
       <label>Febre</label>
       <select formControlName="temFebre">
+        <option [ngValue]="null">Selecione</option>
         <option [ngValue]="false">Não</option>
         <option [ngValue]="true">Sim</option>
       </select>
+
+      <small *ngIf="form.get('temFebre')?.invalid && form.get('temFebre')?.touched">
+        Informe se está com febre.
+      </small>
     </div>
   </div>
 
   <div class="acoes">
-    <button type="button" class="secundario" (click)="voltarEtapa.emit()">Voltar</button>
-    <button type="button" (click)="enviar()">Próximo</button>
+    <button type="button" class="secundario" (click)="voltarEtapa.emit()">
+      Voltar
+    </button>
+
+    <button type="button" (click)="enviar()">
+      Próximo
+    </button>
   </div>
 </form>

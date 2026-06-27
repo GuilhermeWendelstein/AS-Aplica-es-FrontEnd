@@ -8,7 +8,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-cadastro',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterLink], // Importa o ReactiveFormsModule
-  templateUrl: './cadastro.html'
+  templateUrl: './cadastro.html',
+  styleUrl: './cadastro.css'
 })
 export class Cadastro {
   cadastroForm: FormGroup; // Declara o formulário

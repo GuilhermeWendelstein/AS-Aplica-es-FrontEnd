@@ -71,4 +71,11 @@
   .etapas {
     grid-template-columns: 1fr 1fr;
   }
+  button.secundario {
+  background: #64748b;
+}
+
+button.secundario:hover {
+  background: #475569;
+}
 }

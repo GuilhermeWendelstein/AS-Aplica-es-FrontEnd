@@ -36,4 +36,5 @@ app.listen(PORT, () => {
   console.log(`- POST /cadastro`);
   console.log(`- POST /login`);
   console.log(`- POST /api/triagem`);
+  console.log(`- GET  /api/triagem`);
 });
